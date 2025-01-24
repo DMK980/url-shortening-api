@@ -63,7 +63,7 @@ async function apiCalling(url){
         Function calls the api and gets the 
         shortened url.
     */
-    const apiurl = `https://serverlessfunction-kizcvutiw-dmk980s-projects.vercel.app/`
+    const apiurl = `https://serverlessfunction-rjk1oyrc9-dmk980s-projects.vercel.app`
     const response = await fetch(apiurl,{
         method:"POST",
         headers:{
