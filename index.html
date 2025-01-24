@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet"href="style.css">
+  <title>Shortly</title>
+</head>
+<body>
+  <header>
+    <img class="logo"rel="logo" src="./images/logo.svg">
+    <img class="hamburger"rel="hamburger"src="./images/icons8-hamburger-menu.svg">
+    <nav class="nav-hidden">
+      <div class="left-links">
+        <a>Features</a>
+        <a>Pricing</a>
+        <a>Resources</a>
+      </div>
+      <div class="right-links">
+        <button id="header-login-btn"class="button-1">Login</button>
+        <button id="header-signup-btn"class="button-2">Sign Up</button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section id="hero-section">
+      <div class="hero-text">
+        <div class="hero-text-container">
+          <h1 id="hero-h1">More than just shorter links</h1>
+          <p id="hero-p">Build your brand’s recognition and get detailed insights 
+            on how your links are performing.</p>
+          <button id="get-started-btn"class="button-2">Get Started</button>
+        </div>
+      </div>
+      <img class="illustration-working"rel="illustration-working"src="./images/illustration-working.svg">
+    </section>
+    <section id="linkcontainer-section">
+      <div id="linkshortening-div">
+        <div id="linkshortening-input-container">
+          <input required type="text"placeholder="Shorten a link here...">
+          <p style="visibility: hidden;">please add a link</p>
+        </div>
+        <button id="shorten-it-btn"class="button-3">Shorten it!</button>
+      </div>
+    </section>
+    <section id="advancedstatistics-section">
+      <div id="linkshortening-answer-div">
+        <!-- shortened links go here -->
+      </div>
+      <div id="advancedstatistics-heading-container">
+        <h2 class="advanced-header">Advanced Statistics</h2>
+        <p class="advanced-subheader">Track how your links are performing across the web with our 
+          advanced statistics dashboard.</p>
+      </div>
+      <section id="valueproposition-section">
+        <div class="vp-container">
+          <img rel="brand-recognition image"src="./images/icon-brand-recognition.svg">
+          <h3>Brand Recognition</h3>
+          <p>Boost your brand recognition with each click. Generic links don’t 
+            mean a thing. Branded links help instil confidence in your content.</p>
+        </div>
+        <div class="vp-container">
+          <img rel="detailed-records image"src="./images/icon-detailed-records.svg">
+          <h3>Detailed Records</h3>
+          <p>Gain insights into who is clicking your links. Knowing when and where 
+            people engage with your content helps inform better decisions.
+          </p>
+        </div>
+        <div class="vp-container">
+          <img rel="Fully Customizable"src="./images/icon-fully-customizable.svg">
+          <h3>Fully Customizable</h3>
+          <p>Improve brand awareness and content discoverability through customizable 
+            links, supercharging audience engagement.</p>
+        </div>
+      </section>
+    </section>
+    <section class="section-boostlinks">
+      <h2>Boost your links today</h2>
+      <button class="button-2">Get Started</button>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <img class="footer-logo"rel="logo" src="./images/logo2.svg">
+      <section class="first-child">
+        <h4>Features</h4>
+        <a>Link Shortening</a>
+        <a>Branded Links</a>
+        <a>Analytics</a>
+      </section>
+      <section>
+        <h4>Resources</h4>
+        <a>Blog</a>
+        <a>Developers</a>
+        <a>Support</a>
+      </section>
+      <section>
+        <h4>Company</h4>
+        <a>About</a>
+        <a>Our Team</a>
+        <a>Careers</a>
+        <a>Contact</a>
+      </section>
+      <section>
+        <img class="social-links"rel="icon-twitter" src="./images/icon-twitter.svg">
+        <img class="social-links"rel="icon-pinterest" src="./images/icon-pinterest.svg">
+        <img class="social-links"rel="icon-instagram" src="./images/icon-instagram.svg">
+        <img class="social-links"rel="icon-facebook" src="./images/icon-facebook.svg">
+      </section>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
