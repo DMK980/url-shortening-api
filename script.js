@@ -78,9 +78,9 @@ async function apiCalling(url){
     const response = await fetch(apiurl,{
         method:"POST",
         headers:{
-            'content-Type':'application/json'
+            'content-Type':'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify({validatedurl})
+        body: new URLSearchParams({ url: validatedurl })
     });
     !response.ok ? console.log(response.status):console.log('Run successfully');
     const data = await response.json()
