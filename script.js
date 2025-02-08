@@ -73,16 +73,18 @@ async function apiCalling(url){
         Function calls the api and gets the 
         shortened url.
     */
-    const apiurl = `https://url-proxy-server2-n2kb7lz4l-dmk980s-projects.vercel.app/shortening`
+    const validatedurl = inputValidation(url)
+    const apiurl = `https://cleanuri.com/api/v1/shorten`
     const response = await fetch(apiurl,{
         method:"POST",
         headers:{
             'content-Type':'application/json'
         },
-        body: JSON.stringify({url})
+        body: JSON.stringify({validatedurl})
     });
     !response.ok ? console.log(response.status):console.log('Run successfully');
     const data = await response.json()
+    console.log(data)
     return data.response
 }
 
@@ -108,6 +110,19 @@ function populate(){
     JSON.parse(localStorage.getItem('links')).map((link)=>{
         answerDiv.innerHTML += shortenedLinksHTML(link.userInput,link.shortlink)
     })
+   }
+}
+
+function inputValidation(url){
+    /*
+        Function makes sure the url 
+        is in good format for the API
+    */
+   if(!url.includes('https') || !url.includes('http')){
+    let validUrl = `https://${url}`
+    return validUrl
+   } else{
+    return url
    }
 }
 
