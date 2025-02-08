@@ -10,17 +10,26 @@ const userInputError = document.getElementById('linkshortening-input-container')
 
 const answerDiv = document.getElementById("linkshortening-answer-div")
 const submitbtn = document.getElementById("shorten-it-btn");
+const shortenedLinks = []
+
+//input select EventListener
+userInput.addEventListener("focus",()=>{
+    userInput.value ? userInput.select():""
+})
+
+// Copy button EventListener
+answerDiv.addEventListener('click',(e)=>{
+    if(e.target.localName === "button"){
+        navigator.clipboard.writeText(e.target.parentElement.children[1].href)
+    }
+})
 
 // Hamburger Menu EventListener
-hamburgerMenu.addEventListener("click",hamburgerAction);
-
-function hamburgerAction(e){
-    /* 
-        Function toggles the nav bar
-        on mobile devices
-    */
+hamburgerMenu.addEventListener("click",()=>{
     nav.classList.toggle('nav-hidden')
-}
+});
+//populates already saved links
+populate()
 
 submitbtn.addEventListener('click',submit)
 
@@ -40,6 +49,7 @@ async function submit(){
         // API integration goes here
         const shortlink = await apiCalling(userInput.value)
         answerDiv.innerHTML += shortenedLinksHTML(userInput.value,shortlink)
+        sessionStore(userInput.value,shortlink)
     }
 }
 
@@ -52,7 +62,7 @@ function shortenedLinksHTML(prevLink,shortenedLink){
     return `<div id="shortenedlinks-div">
                 <p>${prevLink}</p>
                 <a href="${shortenedLink}">${shortenedLink}</a>
-                <button class="button-3">Copy</button>
+                <button id="copyBtn"class="button-3">Copy</button>
             </div>
             `
 }
@@ -63,17 +73,41 @@ async function apiCalling(url){
         Function calls the api and gets the 
         shortened url.
     */
-    const apiurl = `https://serverlessfunction-mhoa3dued-dmk980s-projects.vercel.app`
+    const apiurl = `http://localhost:3000/shortening`
     const response = await fetch(apiurl,{
         method:"POST",
         headers:{
             'content-Type':'application/json'
         },
-        body: JSON.stringify({ url })
+        body: JSON.stringify({url})
     });
     !response.ok ? console.log(response.status):console.log('Run successfully');
-
-    const json = await response.json()
-    console.log(json)
-    return json.result_url
+    const data = await response.json()
+    return data.response
 }
+
+function sessionStore(userinput,shortlink){
+    /*
+        Function stores the shortened links
+        in the session storage
+    */
+    JSON.parse(localStorage.getItem('links')).map((link)=>{
+        shortenedLinks.push(link)
+    })
+    shortenedLinks.push({userInput:userinput,shortlink:shortlink})
+    localStorage.setItem("links",JSON.stringify(shortenedLinks))
+}
+
+function populate(){
+    /*
+        Function populates the links
+        section with shortened links 
+        saved in session storage.
+    */
+   if(localStorage.getItem('links')){
+    JSON.parse(localStorage.getItem('links')).map((link)=>{
+        answerDiv.innerHTML += shortenedLinksHTML(link.userInput,link.shortlink)
+    })
+   }
+}
+

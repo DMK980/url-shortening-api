@@ -255,6 +255,7 @@ input::placeholder{
 #shorten-it-btn{
     width: 100%;
 }
+/* link shortening section */
 #linkshortening-answer-div{
     width: 100%;
     max-width: 1000px;
@@ -274,11 +275,40 @@ input::placeholder{
 #shortenedlinks-div p{
     margin-right: auto;
     color: black;
+    overflow:scroll;
+    max-width: 400px;
+    text-align: start;
+}
+#shortenedlinks-div p::-webkit-scrollbar{
+    display: none;
 }
 #shortenedlinks-div a{
     padding: 0 2rem 0 0;
     color: var(--primary1);
     text-decoration: none;
+}
+@media screen and (max-width:878px) {
+    #shortenedlinks-div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #shortenedlinks-div p{
+        text-align: center;
+        margin-right: 0;
+        width: 100%;
+        overflow:scroll;
+        word-wrap: break-word;
+        height: 50px;
+    }
+    #shortenedlinks-div a{
+        padding: 0 0 0 0;
+        overflow: scroll;
+        word-wrap: break-word;
+        width: 100%;
+        text-align: center;
+    }
+    
 }
 @media screen and (min-width:720px) {
     #linkshortening-div{
