@@ -73,17 +73,19 @@ async function apiCalling(url){
         Function calls the api and gets the 
         shortened url.
     */
-    const apiurl = `http://localhost:3000/shortening`
+    const apiurl = `https://api.tinyurl.com/create`
+    const apiKey = `xfpMKA4UlmRvkpb6beW5tEtXzmKocgpgk92ykhgkU2XZgXAMGy6S4kiGEfwj`
     const response = await fetch(apiurl,{
         method:"POST",
         headers:{
-            'content-Type':'application/json'
+            'content-Type':'application/json',
+            "Authorization":`Bearer ${apiKey}`
         },
-        body: JSON.stringify({url})
+        body: JSON.stringify({url:inputValidation(url)})
     });
     !response.ok ? console.log(response.status):console.log('Run successfully');
     const data = await response.json()
-    return data.response
+    return data.data.tiny_url
 }
 
 function sessionStore(userinput,shortlink){
@@ -91,9 +93,11 @@ function sessionStore(userinput,shortlink){
         Function stores the shortened links
         in the session storage
     */
+   if(localStorage.getItem('links')){
     JSON.parse(localStorage.getItem('links')).map((link)=>{
         shortenedLinks.push(link)
     })
+   }
     shortenedLinks.push({userInput:userinput,shortlink:shortlink})
     localStorage.setItem("links",JSON.stringify(shortenedLinks))
 }
@@ -108,6 +112,19 @@ function populate(){
     JSON.parse(localStorage.getItem('links')).map((link)=>{
         answerDiv.innerHTML += shortenedLinksHTML(link.userInput,link.shortlink)
     })
+   }
+}
+
+function inputValidation(url){
+    /*
+        Function makes sure the url 
+        is in good format for the API
+    */
+   if(!url.includes('https') || !url.includes('http')){
+    let validUrl = `https://${url}`
+    return validUrl
+   } else{
+    return url
    }
 }
 
