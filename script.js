@@ -128,3 +128,16 @@ function inputValidation(url){
    }
 }
 
+function inputValidation(url){
+    /*
+        Function makes sure the url 
+        is in good format for the API
+    */
+   if(!url.includes('https') || !url.includes('http')){
+    let validUrl = `https://${url}`
+    return validUrl
+   } else{
+    return url
+   }
+}
+
